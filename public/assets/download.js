@@ -81,9 +81,9 @@ const App = React.createClass({ // eslint-disable-line
 		
 		const tracks = this.state.tracks.map(item => {
 			return [
-				item.track.name.replace(',', ''),
-				item.track.artists.map(a => a.name).join(' ').replace(',', ''),
-				item.track.album.name.replace(',', ''),
+				'"' + item.track.name + '"',
+				'"' + item.track.artists.map(a => a.name).join(', ') + '"',
+				'"' + item.track.album.name + '"',
 				new Date(item.added_at),
 			];
 		});
