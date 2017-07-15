@@ -1,0 +1,106 @@
+html {
+	color: white;
+	background: black;
+	font-family: 'Space Mono', monospace;
+	font-size: 16px;
+}
+
+body {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px 10px;
+}
+
+button {
+	background: black;
+	border: none;
+	font-family: 'Space Mono', monospace;
+	color: white;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 14px;
+	position: relative;
+}
+
+button:active {
+	left: 5px;
+	top: 5px;
+}
+
+button:focus {
+	outline: none;
+}
+
+button:before {
+	position: absolute;
+	left: 6px;
+	right: -6px;
+	bottom: -6px;
+	top: 6px;
+	content: '';
+	background: rgba(255,255,255,0.25);
+	border-radius: 5px;
+	z-index: -1;
+}
+
+button:active:before {
+	display: none;
+}
+
+button:disabled {
+	opacity: 0.25;
+}
+
+button:disabled:before {
+	display: none;
+}
+
+h1, h2 {
+	font-size: 1.25rem;
+	line-height: 1em;
+	padding: 0;
+	margin: 0 0 0.25rem;
+}
+
+h2 {
+	font-size: 1rem;
+}
+
+a {
+	color: #7e7eff;
+}
+
+a:visited {
+	color: #eb7eff;
+}
+
+hr {
+	border: none;
+	margin: 20px 0;
+	padding: 0;
+	border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+li:before {
+	content: '- ';
+	display: inline;
+}
+
+.downloadLink {
+	display: inline-block;
+	padding: 8px 0;
+}
+
+.logo {
+	display: inline;
+	line-height: 1em;
+	width: 0.75em;
+	height: 0.75em;
+}

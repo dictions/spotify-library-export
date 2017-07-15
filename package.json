@@ -1,0 +1,27 @@
+{
+  "name": "spotify-library-export",
+  "version": "1.0.0",
+  "description": "Export entire Spotify library to CSV",
+  "main": "index.js",
+  "repository": "git@github.com:dictions/spotify-library-export.git",
+  "author": "Ian Williams <me@ianwillia.ms>",
+  "license": "MIT",
+  "engines": {
+    "node": "~8.0.0"
+  },
+  "scripts": {
+    "dev": "nodemon index",
+    "start": "node index"
+  },
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "dotenv": "^4.0.0",
+    "eslint": "^4.2.0",
+    "eslint-plugin-react": "^7.1.0",
+    "nodemon": "^1.11.0"
+  }
+}

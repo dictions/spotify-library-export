@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Login - Spotify Library Exporter</title>
+	<link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet" />
+	<link href="/assets/style.css" rel="stylesheet" />
+	<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon.png">
+</head>
+<body>
+	<h1>
+		<img class="logo" src="/assets/logo.png" />
+		Spotify Library Exporter
+	</h1>
+	<p>
+		<button id="login">
+			Login to Spotify
+		</button>
+	</p>
+	
+	<script>
+		const SPOTIFY_CLIENT_ID = '<%= env.SPOTIFY_CLIENT_ID %>';
+		const REDIRECT_URI = '<%= env.REDIRECT_URI %>';
+	</script>
+	<script>
+		var authWindow;
+		var loginButton = document.getElementById('login');
+		
+		var toQueryString = function(obj) {
+			var parts = [];
+			for (var i in obj) {
+				if (obj.hasOwnProperty(i)) {
+					parts.push(encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]));
+				}
+			}
+			return parts.join('&');
+		};
+		
+		var onClickLogin = function() {
+			var width = 400;
+			var height = 500;
+			var left = (screen.width / 2) - (width / 2);
+			var top = (screen.height / 2) - (height / 2);
+			
+			var params = {
+				client_id: SPOTIFY_CLIENT_ID,
+				redirect_uri: REDIRECT_URI,
+				scope: 'user-library-read',
+				response_type: 'token'
+			};
+			
+			authWindow = window.open(
+				'https://accounts.spotify.com/authorize?' + toQueryString(params),
+				'Spotify',
+				'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
+			);
+		};
+		
+		var receiveAuthToken = function(event) {
+			if (event.origin !== window.location.origin) {
+				return;
+			}
+			
+			if (authWindow) {
+				authWindow.close();
+			}
+			onAuthorizeSpotify(event.data);
+		};
+		
+		var onAuthorizeSpotify = function(token) {
+			window.location.href = window.location.origin + '/download?token=' + token;
+		};
+			
+		window.addEventListener('message', receiveAuthToken, false);
+		loginButton.addEventListener('click', onClickLogin);
+		
+	</script>
+</body>
+</html>

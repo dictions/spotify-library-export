@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Login Success - Spotify Library Exporter</title>
+	</head>
+	<body></body>
+	
+	<script type='text/javascript'>
+		window.onload = function() {
+			var target = window.self === window.top ? window.opener : window.parent;
+			var hash = window.location.hash;
+			
+			if (hash) {
+				var token = window.location.hash.split('&')[0].split('=')[1];
+				target.postMessage(token, window.location.origin);
+			}
+		};
+	</script>
+</html>
